@@ -4,6 +4,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -18,8 +19,8 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            
-            if (car.Description.Length>2 && car.DailyPrice>0 )
+
+            if (car.Description.Length > 2 && car.DailyPrice > 0)
             {
                 _carDal.Add(car);
             }
@@ -30,7 +31,7 @@ namespace Business.Concrete
                 Console.WriteLine("Araba açıklaması minumum 3 karakter olmalıdır. ");
             }
 
-           
+
         }
 
         public void Delete(Car car)
@@ -40,12 +41,24 @@ namespace Business.Concrete
 
         public List<Car> GetAll()
         {
-          return  _carDal.GetAll();
+            return _carDal.GetAll();
+        }
+
+    
+
+        public List<CarDetailDto> GetByIdCarDetails(int carId)
+        {
+            return _carDal.GetByIdCarDetail(carId);
         }
 
         public List<Car> GetCarById(int carId)
         {
-            return _carDal.GetAll(c => c.Id==carId);
+            return _carDal.GetAll(c => c.Id == carId);
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return _carDal.GetCarDetail();
         }
 
         public List<Car> GetCarsByBrandId(int brandId)
@@ -61,7 +74,7 @@ namespace Business.Concrete
 
         public void Update(Car car)
         {
-            if ( car.DailyPrice > 0)
+            if (car.DailyPrice > 0)
             {
                 _carDal.Update(car);
             }
@@ -72,7 +85,7 @@ namespace Business.Concrete
             }
 
 
-            
+
         }
     }
 }
