@@ -75,7 +75,7 @@ namespace Business.Concrete
                 return new SuccessResult(Messages.CarDeleted);
             }
 
-            return new SuccessResult(Messages.CarPriceInValid);
+            return new ErrorResult(Messages.CarPriceInValid);
         }
     }
 }

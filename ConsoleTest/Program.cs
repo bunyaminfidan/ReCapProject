@@ -9,22 +9,22 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-           // CarGetAllTest();
-             // CarAddTest();
-            // CarUpdateTest();
-            //CarDeleteTest();
-            //  GetCarByIdTest();
+            CarGetAllTest();
+           // CarAddTest();
+           // CarUpdateTest();
+           // CarDeleteTest();
+            GetCarByIdTest();
             GetByIdCarDetailsTest();
 
-            //CarDeleteTest();
+           // CarDeleteTest();
 
 
 
-            //  ColorAddTest();
-            // ColorUpdateTest();
+           // ColorAddTest();
+           // ColorUpdateTest();
 
 
-            // BrandAddTest();
+            //BrandAddTest();
             //BrandUpdateTest();
 
 
@@ -107,7 +107,7 @@ namespace ConsoleTest
         private static void CarAddTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-           var result= carManager.Add(new Car { ColorId = 28, ModelYear = 2020, BrandId = 9, DailyPrice = 400, Description = "Buketin Arabası" });
+            var result = carManager.Add(new Car { ColorId = 28, ModelYear = 2020, BrandId = 9, DailyPrice = 400, Description = "Buketin Arabası" });
             Console.WriteLine(result.Message);
         }
 

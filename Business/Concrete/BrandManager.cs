@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Core.Utilitis;
 using DataAccess.Abstract;
+using DataAccess.Constans;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -18,29 +20,33 @@ namespace Business.Concrete
 
 
 
-        public void Add(Brand brand)
+        public IResult Add(Brand brand)
         {
             _brandDal.Add(brand);
+
+            return new SuccessResult(Messages.BrandAdded);
         }
 
-        public void Delete(Brand brand)
+        public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
+            return new SuccessResult(Messages.BrandDeleted);
         }
 
-        public List<Brand> GetAllBrand()
+        public IDataResult<List<Brand>> GetAllBrand()
         {
-           return  _brandDal.GetAll();
+           return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(),Messages.GetAllBrand);
         }
 
-        public List<Brand> GetByBrandId(int id)
+        public IDataResult<List<Brand>> GetByBrandId(int id)
         {
-            return _brandDal.GetAll(b => b.Id == id);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(b => b.Id == id),Messages.GetByBrandId);
         }
 
-        public void Update(Brand brand)
+        public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);
+            return new SuccessResult(Messages.BrandUpdated);
         }
     }
 }
