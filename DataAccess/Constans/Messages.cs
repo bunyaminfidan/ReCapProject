@@ -32,6 +32,24 @@ namespace DataAccess.Constans
         public static string GetAllColorListed = "Araba renkleri listelendi";
         public static string GetByColorIdListed = "Seçili Araba rengi listelendi";
 
+        public static string UserAdded = "Kullanıcı eklendi";
+        public static string UserUpdated = "Kullanıcı güncellendi";
+        public static string UserDeleted = "Kullanıcı silinidi";
+        public static string GetAllUserListed = "Kullanıcılar listelendi";
+        public static string GetByUserIdListed = "Seçili kullanıcı listelendi";
+
+        public static string RentalAdded = "Yeni araba kiralama eklendi";
+        public static string RentalUpdated = "Araba kiralama güncellendi";
+        public static string RentalDeleted = "Araba kiralama silinidi";
+        public static string GetAllRentalListed = "Kiralamalar listelendi";
+        public static string GetByRentalIdListed = "Seçili kiralama listelendi";
+
+        public static string CostumerAdded = "Müşteri eklendi";
+        public static string CostumerUpdated = "Müşteri güncellendi";
+        public static string CostumerDeleted = "Müşteri silinidi";
+        public static string GetAllCostumerListed = "Müşteriler listelendi";
+        public static string GetByCostumerIdListed = "Seçili müşteri listelendi";
+
 
 
 

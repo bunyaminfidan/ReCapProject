@@ -9,25 +9,64 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            CarGetAllTest();
-           // CarAddTest();
-           // CarUpdateTest();
-           // CarDeleteTest();
-            GetCarByIdTest();
-            GetByIdCarDetailsTest();
+            /// CarGetAllTest();
+            //CarAddTest();
+            // CarUpdateTest();
+            // CarDeleteTest();
+            // GetCarByIdTest();
+            // GetByIdCarDetailsTest();
 
-           // CarDeleteTest();
+            // CarDeleteTest();
 
 
 
-           // ColorAddTest();
-           // ColorUpdateTest();
+            // ColorAddTest();
+            // ColorUpdateTest();
 
 
             //BrandAddTest();
             //BrandUpdateTest();
 
+            //  CostumerAddTested();
 
+            //UserAddTested();
+
+            // RentalAddTest();
+            //RentalGetAll();
+
+        }
+
+        private static void RentalGetAll()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.GetAll();
+            foreach (var rental in result.Data)
+            {
+                Console.WriteLine(rental.CarId + rental.RentDate.ToString());
+            }
+            Console.WriteLine(result.Message);
+        }
+
+        private static void RentalAddTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.Add(new Rental { CarId = 1, RentDate = DateTime.Now.Date, ReturnDate = (DateTime.Now.Date) });
+            Console.WriteLine(result.Message);
+        }
+
+        private static void UserAddTested()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            var result = userManager.Add(new User { FirstName = "Bünyamin", LastName = "FİDAN", Email = "deneme@deneme", Password = "12345" });
+            Console.WriteLine(result.Message);
+        }
+
+        private static void CostumerAddTested()
+        {
+            CostumerManager costumerManager = new CostumerManager(new EfCostumerDal());
+            costumerManager.Add(new Costumer { Id = 1, CompanyName = "Fidan Şirket" });
+            costumerManager.Add(new Costumer { Id = 2, CompanyName = "Yılmaz Şirket" });
+            costumerManager.Add(new Costumer { Id = 3, CompanyName = "Burcu Şirket" });
         }
 
         private static void CarDeleteTest()
@@ -100,14 +139,14 @@ namespace ConsoleTest
         private static void ColorAddTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            colorManager.Add(new Color { Id = 9, ColorName = "Beyaz" });
+            colorManager.Add(new Color { Id = 4, ColorName = "Siyah" });
 
         }
 
         private static void CarAddTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            var result = carManager.Add(new Car { ColorId = 28, ModelYear = 2020, BrandId = 9, DailyPrice = 400, Description = "Buketin Arabası" });
+            var result = carManager.Add(new Car { ColorId = 255, ModelYear = 2020, BrandId = 9, DailyPrice = 400, Description = "Buketin Arabası" });
             Console.WriteLine(result.Message);
         }
 
