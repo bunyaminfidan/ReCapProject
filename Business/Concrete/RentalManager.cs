@@ -3,6 +3,7 @@ using Core.Utilitis;
 using DataAccess.Abstract;
 using DataAccess.Constans;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,6 +21,12 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
+
+            if (rental.ReturnDate < rental.RentDate)
+            {
+                return new ErrorResult(Messages.RentalReturnDateInValid);
+
+            }
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }
@@ -33,13 +40,24 @@ namespace Business.Concrete
 
         public IDataResult<List<Rental>> GetAll()
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.GetAllRentalListed);
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.GetRentalDetail);
+        }
+
+        public IDataResult<List<RentalDetailDto>> GetByIdRentalDetail(int id)
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetByIdRentealDetail(id), Messages.GetByIdRentalDetail);
+
         }
 
         public IDataResult<List<Rental>> GetByRentalId(int rentalId)
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.Id == rentalId), Messages.GetByRentalIdListed);
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.Id == rentalId), Messages.GetByIdRentalDetail);
 
+        }
+
+        public IDataResult<List<RentalDetailDto>> GetRentalDetail()
+        {
+          return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetail(),Messages.GetRentalDetail);
         }
 
         public IResult Update(Rental rental)

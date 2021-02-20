@@ -13,5 +13,6 @@ namespace Business.Abstract
         IResult Add(Costumer costumer);
         IResult Update(Costumer costumer);
         IResult Delete(Costumer costumer);
+
     }
 }

@@ -41,8 +41,11 @@ namespace DataAccess.Constans
         public static string RentalAdded = "Yeni araba kiralama eklendi";
         public static string RentalUpdated = "Araba kiralama güncellendi";
         public static string RentalDeleted = "Araba kiralama silinidi";
-        public static string GetAllRentalListed = "Kiralamalar listelendi";
-        public static string GetByRentalIdListed = "Seçili kiralama listelendi";
+        public static string GetRentalDetail = "Kiralamalar listelendi";
+        public static string GetByIdRentalDetail = "Seçili kiralama listelendi";
+        public static string RentalReturnDateInValid = "Araç teslim tarihi boş olamaz. Araç teslim alma tarihinden küçük olamaz";
+        
+
 
         public static string CostumerAdded = "Müşteri eklendi";
         public static string CostumerUpdated = "Müşteri güncellendi";

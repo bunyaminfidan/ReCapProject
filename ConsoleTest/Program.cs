@@ -31,9 +31,38 @@ namespace ConsoleTest
 
             //UserAddTested();
 
-            // RentalAddTest();
+            //RentalAddTest();
+
             //RentalGetAll();
 
+            //GetAllRentalDetail();
+
+            GetByIdRentalDetail();
+
+        }
+
+        private static void GetByIdRentalDetail()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.GetByIdRentalDetail(1);
+            foreach (var rental in result.Data)
+            {
+                Console.WriteLine(rental.FirsName + " " + rental.LastName + " " + rental.Email + " " + rental.FirsName + " " + rental.LastName);
+
+            }
+            Console.WriteLine(result.Message);
+        }
+
+        private static void GetAllRentalDetail()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.GetRentalDetail();
+            foreach (var rental in result.Data)
+            {
+                Console.WriteLine(rental.FirsName + " " + rental.LastName + " " + rental.Email + " " + rental.FirsName + " " + rental.LastName);
+
+            }
+            Console.WriteLine(result.Message);
         }
 
         private static void RentalGetAll()
@@ -50,7 +79,7 @@ namespace ConsoleTest
         private static void RentalAddTest()
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            var result = rentalManager.Add(new Rental { CarId = 1, RentDate = DateTime.Now.Date, ReturnDate = (DateTime.Now.Date) });
+            var result = rentalManager.Add(new Rental { CarId = 2, RentDate = DateTime.Now.Date }); ;
             Console.WriteLine(result.Message);
         }
 
