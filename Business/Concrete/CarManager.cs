@@ -72,7 +72,7 @@ namespace Business.Concrete
             if (car.DailyPrice > 0)
             {
                 _carDal.Update(car);
-                return new SuccessResult(Messages.CarDeleted);
+                return new SuccessResult(Messages.CarUpdated);
             }
 
             return new ErrorResult(Messages.CarPriceInValid);
