@@ -21,8 +21,8 @@ namespace DataAccess.Constans
         public static string GetCarsByColorIdListed = "Arabaların renkleri listelendi";
 
         public static string BrandAdded = "Araba markası eklendi";
-        public static string BrandUpdated = "Araba markası eklendi";
-        public static string BrandDeleted = "Araba markası eklendi";
+        public static string BrandUpdated = "Araba markası güncellendi";
+        public static string BrandDeleted = "Araba markası silindi";
         public static string GetAllBrand = "Araba markaları listelendi";
         public static string GetByBrandId = "Seçili araba markası listelendi";
 
@@ -44,6 +44,7 @@ namespace DataAccess.Constans
         public static string GetRentalDetail = "Kiralamalar listelendi";
         public static string GetByIdRentalDetail = "Seçili kiralama listelendi";
         public static string RentalReturnDateInValid = "Araç teslim tarihi boş olamaz. Araç teslim alma tarihinden küçük olamaz";
+        public static string RentalCancelled = "Araç teslim alınmadığı için şuan kiralanamaz";
         
 
 

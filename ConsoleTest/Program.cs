@@ -37,8 +37,11 @@ namespace ConsoleTest
 
             //GetAllRentalDetail();
 
-            GetByIdRentalDetail();
+            // GetByIdRentalDetail();
 
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+          var result=  rentalManager.Add(new Rental { CarId = 1, CostomerId = 2, RentDate = DateTime.Now.Date ,ReturnDate=null});
+            Console.WriteLine(result.Message);
         }
 
         private static void GetByIdRentalDetail()
@@ -76,12 +79,7 @@ namespace ConsoleTest
             Console.WriteLine(result.Message);
         }
 
-        private static void RentalAddTest()
-        {
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            var result = rentalManager.Add(new Rental { CarId = 2, RentDate = DateTime.Now.Date }); ;
-            Console.WriteLine(result.Message);
-        }
+
 
         private static void UserAddTested()
         {

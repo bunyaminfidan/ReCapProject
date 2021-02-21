@@ -22,11 +22,14 @@ namespace Business.Concrete
         public IResult Add(Rental rental)
         {
 
-            if (rental.ReturnDate < rental.RentDate)
-            {
-                return new ErrorResult(Messages.RentalReturnDateInValid);
+            var isCarDelivered = _rentalDal.GetAll(r => r.CarId == rental.CarId && r.ReturnDate == null);
 
+
+            if (isCarDelivered.Count > 0)
+            {
+                return new ErrorResult(Messages.RentalCancelled);
             }
+
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }
@@ -57,8 +60,10 @@ namespace Business.Concrete
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetail()
         {
-          return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetail(),Messages.GetRentalDetail);
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetail(), Messages.GetRentalDetail);
         }
+
+
 
         public IResult Update(Rental rental)
         {
