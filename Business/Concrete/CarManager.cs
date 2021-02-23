@@ -10,6 +10,7 @@ using Business.ValidationRules.FluentValidation;
 using FluentValidation;
 using Core.Utilitis.Results;
 using Core.CrossCuttingConcerns.Validation.FluentValidation;
+using Core.Aspects.Autofac;
 
 namespace Business.Concrete
 {
@@ -22,12 +23,13 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+
         public IResult Add(Car car)
         {
 
 
 
-           ValidationTool.Validate(new CarValidator(), car);
+           //ValidationTool.Validate(new CarValidator(), car);
 
 
             //if (car.Description.Length > 2 && car.DailyPrice > 0)
