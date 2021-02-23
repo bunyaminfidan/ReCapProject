@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation.FluentValidation;
 using Core.Utilitis.Results;
 using DataAccess.Abstract;
 using DataAccess.Constans;
@@ -21,6 +23,7 @@ namespace Business.Concrete
 
         public IResult Add(User user)
         {
+
             _userDal.Add(user);
             return new SuccessResult(Messages.UserAdded);
         }
