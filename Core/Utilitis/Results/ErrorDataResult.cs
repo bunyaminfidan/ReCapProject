@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Utilitis
+namespace Core.Utilitis.Results
 {
     public class ErrorDataResult<T> : DataResult<T>
     {

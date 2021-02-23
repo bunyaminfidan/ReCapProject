@@ -5,8 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Entities.DTOs;
-using Core.Utilitis;
 using DataAccess.Constans;
+using Business.ValidationRules.FluentValidation;
+using FluentValidation;
+using Core.Utilitis.Results;
+using Core.CrossCuttingConcerns.Validation.FluentValidation;
 
 namespace Business.Concrete
 {
@@ -21,11 +24,17 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
-            if (car.Description.Length > 2 && car.DailyPrice > 0)
-            {
-                _carDal.Add(car);
-                return new SuccessResult(Messages.CarAdded);
-            }
+
+
+
+           ValidationTool.Validate(new CarValidator(), car);
+
+
+            //if (car.Description.Length > 2 && car.DailyPrice > 0)
+            //{
+            //    _carDal.Add(car);
+            //    return new SuccessResult(Messages.CarAdded);
+            //}
 
             return new ErrorResult(Messages.CarNameInValid + Messages.CarPriceInValid);
         }
