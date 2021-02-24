@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac;
 using Core.Utilitis.Results;
 using DataAccess.Abstract;
 using DataAccess.Constans;
@@ -18,6 +20,7 @@ namespace Business.Concrete
             _costumerDal = costumerDal;
         }
 
+        [ValidationAspect(typeof(CostumerValidator))]
         public IResult Add(Costumer costumer)
         {
             _costumerDal.Add(costumer);

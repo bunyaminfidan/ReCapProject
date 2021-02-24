@@ -1,5 +1,7 @@
 ﻿
 using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac;
 using Core.Utilitis.Results;
 using DataAccess.Abstract;
 using DataAccess.Constans;
@@ -19,6 +21,7 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
+        [ValidationAspect(typeof(ColorValidator))]
         public IResult Add(Color color)
         {
             _colorDal.Add(color);
