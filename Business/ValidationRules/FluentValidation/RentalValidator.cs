@@ -11,12 +11,11 @@ namespace Business.ValidationRules.FluentValidation
         public RentalValidator()
         {
             RuleFor(r => r.CarId).NotEmpty();
-            RuleFor(r => r.CostomerId).NotEmpty();
+            RuleFor(r => r.CarId).GreaterThan(0);
+            RuleFor(r => r.CustomerId).NotEmpty();
+            RuleFor(r => r.CustomerId).GreaterThan(0);
             RuleFor(r => r.RentDate).NotEmpty();
-
-
-
-
+            RuleFor(r => r.ReturnDate).GreaterThanOrEqualTo(r => r.RentDate).When(r => r.ReturnDate.HasValue).WithMessage("Girilen tarihler geçersizdir.");
         }
     }
 }

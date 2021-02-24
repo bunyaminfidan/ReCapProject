@@ -43,8 +43,8 @@ namespace WebAPI
             services.AddSingleton<IColorService, ColorManager>();
             services.AddSingleton<IColorDal,EfColorDal>();
 
-            services.AddSingleton<ICostumerService,CostumerManager>();
-            services.AddSingleton<ICostumerDal,EfCostumerDal>();
+            services.AddSingleton<ICustomerService,CustomerManager>();
+            services.AddSingleton<ICustomerDal,EfCustomerDal>();
 
             services.AddSingleton<IRentalService,RentalManager>();
             services.AddSingleton<IRentalDal,EfRentalDal>();

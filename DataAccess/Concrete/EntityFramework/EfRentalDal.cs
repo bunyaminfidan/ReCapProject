@@ -24,7 +24,7 @@ namespace DataAccess.Concrete.EntityFramework
                              on rental.CarId equals car.Id
 
                              join costumer in context.Costumers
-                             on rental.CostomerId equals costumer.Id
+                             on rental.CustomerId equals costumer.Id
 
                              join user in context.Users
                              on costumer.Id equals user.Id
@@ -66,7 +66,7 @@ namespace DataAccess.Concrete.EntityFramework
                              on rental.CarId equals car.Id
 
                              join costumer in context.Costumers
-                             on rental.CostomerId equals costumer.Id
+                             on rental.CustomerId equals costumer.Id
 
                              join user in context.Users
                              on costumer.Id equals user.Id

@@ -40,7 +40,7 @@ namespace ConsoleTest
             // GetByIdRentalDetail();
 
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
-          var result=  rentalManager.Add(new Rental { CarId = 1, CostomerId = 2, RentDate = DateTime.Now.Date ,ReturnDate=null});
+          var result=  rentalManager.Add(new Rental { CarId = 1, CustomerId = 2, RentDate = DateTime.Now.Date ,ReturnDate=null});
             Console.WriteLine(result.Message);
         }
 
@@ -90,10 +90,10 @@ namespace ConsoleTest
 
         private static void CostumerAddTested()
         {
-            CostumerManager costumerManager = new CostumerManager(new EfCostumerDal());
-            costumerManager.Add(new Costumer { Id = 1, CompanyName = "Fidan Şirket" });
-            costumerManager.Add(new Costumer { Id = 2, CompanyName = "Yılmaz Şirket" });
-            costumerManager.Add(new Costumer { Id = 3, CompanyName = "Burcu Şirket" });
+            CustomerManager costumerManager = new CustomerManager(new EfCustomerDal());
+            costumerManager.Add(new Customer { Id = 1, CompanyName = "Fidan Şirket" });
+            costumerManager.Add(new Customer { Id = 2, CompanyName = "Yılmaz Şirket" });
+            costumerManager.Add(new Customer { Id = 3, CompanyName = "Burcu Şirket" });
         }
 
         private static void CarDeleteTest()
