@@ -47,7 +47,7 @@ namespace ConsoleTest
         private static void GetByIdRentalDetail()
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            var result = rentalManager.GetByIdRentalDetail(1);
+            var result = rentalManager.GetByCarIdRentalDetail(1);
             foreach (var rental in result.Data)
             {
                 Console.WriteLine(rental.FirsName + " " + rental.LastName + " " + rental.Email + " " + rental.FirsName + " " + rental.LastName);
@@ -59,7 +59,7 @@ namespace ConsoleTest
         private static void GetAllRentalDetail()
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            var result = rentalManager.GetRentalDetail();
+            var result = rentalManager.GetAllRentalDetail();
             foreach (var rental in result.Data)
             {
                 Console.WriteLine(rental.FirsName + " " + rental.LastName + " " + rental.Email + " " + rental.FirsName + " " + rental.LastName);
@@ -91,9 +91,9 @@ namespace ConsoleTest
         private static void CostumerAddTested()
         {
             CustomerManager costumerManager = new CustomerManager(new EfCustomerDal());
-            costumerManager.Add(new Customer { Id = 1, CompanyName = "Fidan Şirket" });
-            costumerManager.Add(new Customer { Id = 2, CompanyName = "Yılmaz Şirket" });
-            costumerManager.Add(new Customer { Id = 3, CompanyName = "Burcu Şirket" });
+            costumerManager.Add(new Customer { UserId = 1, CompanyName = "Fidan Şirket" });
+            costumerManager.Add(new Customer { UserId = 2, CompanyName = "Yılmaz Şirket" });
+            costumerManager.Add(new Customer { UserId = 3, CompanyName = "Burcu Şirket" });
         }
 
         private static void CarDeleteTest()

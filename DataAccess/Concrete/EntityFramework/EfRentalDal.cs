@@ -15,19 +15,20 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, ReCarProjectDatabaseContext>, IRentalDal
     {
-        public List<RentalDetailDto> GetByIdRentealDetail(int rentalId)
+        public List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
         {
             using (ReCarProjectDatabaseContext context = new ReCarProjectDatabaseContext())
             {
-                var result = from rental in context.Rentals
+                var result = from rental in filter is null ? context.Rentals : context.Rentals.Where(filter)
+
                              join car in context.Cars
                              on rental.CarId equals car.Id
 
-                             join costumer in context.Costumers
-                             on rental.CustomerId equals costumer.Id
+                             join customer in context.Customers
+                             on rental.CustomerId equals customer.UserId
 
                              join user in context.Users
-                             on costumer.Id equals user.Id
+                             on customer.UserId equals user.Id
 
                              join brand in context.Brands
                              on car.BrandId equals brand.Id
@@ -35,54 +36,13 @@ namespace DataAccess.Concrete.EntityFramework
                              join color in context.Colors
                              on car.ColorId equals color.Id
 
-                             where rental.Id == rentalId
-
+                             orderby rental.Id
                              select new RentalDetailDto
                              {
                                  id = rental.Id,
                                  BrandName = brand.BrandName,
                                  ColorName = color.ColorName,
-                                 CompanyName = costumer.CompanyName,
-                                 DailyPrice = car.DailyPrice,
-                                 Description = car.Description,
-                                 Email = user.Email,
-                                 FirsName = user.FirstName,
-                                 LastName = user.LastName,
-                                 ModelYear = car.ModelYear
-                             };
-
-                return result.ToList();
-
-
-            }
-        }
-
-        public List<RentalDetailDto> GetRentalDetail()
-        {
-            using (ReCarProjectDatabaseContext context = new ReCarProjectDatabaseContext())
-            {
-                var result = from rental in context.Rentals
-                             join car in context.Cars
-                             on rental.CarId equals car.Id
-
-                             join costumer in context.Costumers
-                             on rental.CustomerId equals costumer.Id
-
-                             join user in context.Users
-                             on costumer.Id equals user.Id
-
-                             join brand in context.Brands
-                             on car.BrandId equals brand.Id
-
-                             join color in context.Colors
-                             on car.ColorId equals color.Id
-
-                             select new RentalDetailDto
-                             {
-                                 id = rental.Id,
-                                 BrandName = brand.BrandName,
-                                 ColorName = color.ColorName,
-                                 CompanyName = costumer.CompanyName,
+                                 CompanyName = customer.CompanyName,
                                  DailyPrice = car.DailyPrice,
                                  Description = car.Description,
                                  Email = user.Email,
@@ -91,10 +51,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  ModelYear = car.ModelYear
                              };
                 return result.ToList();
-
-
             }
         }
-
     }
 }

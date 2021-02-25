@@ -24,30 +24,30 @@ namespace Business.Concrete
         public IResult Add(Customer costumer)
         {
             _costumerDal.Add(costumer);
-            return new SuccessResult(Messages.CostumerAdded);
+            return new SuccessResult(Messages.CustomerAdded);
         }
 
         public IResult Delete(Customer costumer)
         {
             _costumerDal.Delete(costumer);
-            return new SuccessResult(Messages.CostumerDeleted);
+            return new SuccessResult(Messages.CustomerDeleted);
 
         }
 
         public IDataResult<List<Customer>> GetAll()
         {
-            return new SuccessDataResult<List<Customer>>(_costumerDal.GetAll(), Messages.GetAllCostumerListed);
+            return new SuccessDataResult<List<Customer>>(_costumerDal.GetAll(), Messages.GetAllCustomerListed);
         }
 
-        public IDataResult<List<Customer>> GetByCostumerId(int costumerId)
+        public IDataResult<List<Customer>> GetByCustomerId(int costumerId)
         {
-            return new SuccessDataResult<List<Customer>>(_costumerDal.GetAll(c => c.Id == costumerId), Messages.GetByCostumerIdListed);
+            return new SuccessDataResult<List<Customer>>(_costumerDal.GetAll(c => c.UserId == costumerId), Messages.GetByCustomerIdListed);
         }
 
         public IResult Update(Customer costumer)
         {
             _costumerDal.Update(costumer);
-            return new SuccessResult(Messages.CostumerUpdated);
+            return new SuccessResult(Messages.CustomerUpdated);
         }
     }
 }
