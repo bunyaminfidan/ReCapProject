@@ -80,7 +80,7 @@ namespace WebAPI.Controllers
         [HttpGet("getalldetail")]
         public IActionResult GetAllDetail()
         {
-            var result = _rentalService.GetRentalDetail();
+            var result = _rentalService.GetAllRentalDetail();
             if (result.Success)
             {
                 return Ok(result);
@@ -88,10 +88,43 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyiddetail")]
-        public IActionResult GetByIdDetail(int id)
+        [HttpGet("getbycariddetail")]
+        public IActionResult GetByCarIdRentalDetail(int id)
         {
-            var result = _rentalService.GetByIdRentalDetail(id);
+            var result = _rentalService.GetByCarIdRentalDetail(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbycustomeriddetail")]
+        public IActionResult GetByCustomerIdRentalDetail(int id)
+        {
+            var result = _rentalService.GetByCustomerIdRentalDetail(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyrentdatedetail")]
+        public IActionResult GetByRentDateRentalDetail(DateTime rentDate)
+        {
+            var result = _rentalService.GetByRentDateRentalDetail(rentDate);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyreturndatedetail")]
+        public IActionResult GetByReturnDateRentalDetail(DateTime returnDate)
+        {
+            var result = _rentalService.GetByReturnDateRentalDetail(returnDate);
             if (result.Success)
             {
                 return Ok(result);

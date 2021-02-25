@@ -13,17 +13,17 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CostumersController : ControllerBase
     {
-        ICustomerService _costumerService;
+        ICustomerService _customerService;
 
-        public CostumersController(ICustomerService costumerService)
+        public CostumersController(ICustomerService customerService)
         {
-            _costumerService = costumerService;
+            _customerService = customerService;
         }
 
         [HttpPost("add")]
         public IActionResult Add(Customer costumer)
         {
-            var result = _costumerService.Add(costumer);
+            var result = _customerService.Add(costumer);
             if (result.Success)
             {
                 return Ok(result);
@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
         [HttpPost("delete")]
         public IActionResult Delete(Customer costumer)
         {
-            var result = _costumerService.Delete(costumer);
+            var result = _customerService.Delete(costumer);
             if (result.Success)
             {
                 return Ok(result);
@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
         [HttpPost("update")]
         public IActionResult Update(Customer costumer)
         {
-            var result = _costumerService.Update(costumer);
+            var result = _customerService.Update(costumer);
             if (result.Success)
             {
                 return Ok(result);
@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _costumerService.GetAll();
+            var result = _customerService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -69,7 +69,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _costumerService.GetByCostumerId(id);
+            var result = _customerService.GetByCustomerId(id);
             if (result.Success)
             {
                 return Ok(result);
