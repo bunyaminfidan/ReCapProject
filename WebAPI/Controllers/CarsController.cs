@@ -36,9 +36,20 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        public IActionResult GetByIdCar(int id)
         {
-            var result = _carService.GetCarById(id);
+            var result = _carService.GetByIdCar(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getalldetail")]
+        public IActionResult GetAllCarDetails()
+        {
+            var result = _carService.GetAllCarDetails();
             if (result.Success)
             {
                 return Ok(result);
@@ -47,7 +58,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyiddetail")]
-        public IActionResult GetByIdDetail(int id)
+        public IActionResult GetByIdCarDetails(int id)
         {
             var result = _carService.GetByIdCarDetails(id);
             if (result.Success)
@@ -58,9 +69,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbrandid")]
-        public IActionResult GetByBrandId(int id)
+        public IActionResult GetByBrandIdCar(int id)
         {
-            var result = _carService.GetCarsByBrandId(id);
+            var result = _carService.GetByBrandIdCar(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -84,6 +95,17 @@ namespace WebAPI.Controllers
         public IActionResult Update(Car car)
         {
             var result = _carService.Update(car);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbybrandiddetail")]
+        public IActionResult GetByBrandIdCarDetails(int id)
+        {
+            var result = _carService.GetByBrandIdCarDetails(id);
             if (result.Success)
             {
                 return Ok(result);

@@ -123,7 +123,7 @@ namespace ConsoleTest
         {
             CarManager carManager = new CarManager(new EfCarDal());
 
-            var result = carManager.GetCarById(1003);
+            var result = carManager.GetByIdCar(1003);
             if (result.Success)
             {
                 foreach (var car in result.Data)
@@ -180,7 +180,7 @@ namespace ConsoleTest
         private static void CarGetAllTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            var result = carManager.GetCarDetails();
+            var result = carManager.GetAllCarDetails();
             if (result.Success)
             {
                 foreach (var car in result.Data)
