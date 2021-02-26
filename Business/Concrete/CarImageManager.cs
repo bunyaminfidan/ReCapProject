@@ -9,6 +9,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -39,11 +40,10 @@ namespace Business.Concrete
 
         public IResult Delete(CarImage carImage)
         {
-
             string sourcePath = carImage.ImagePath;
             try
             {
-                if (carImage.Id != null && carImage.Id > 0)
+                if (carImage.Id > 0)
                 {
                     File.Delete(sourcePath);
                     _carImageDal.Delete(carImage);
@@ -72,8 +72,20 @@ namespace Business.Concrete
 
         public IDataResult<List<CarImage>> GetByCarIdImage(int carId)
         {
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId == carId), Messages.GetByCarIdCarImage);
+            return new SuccessDataResult<List<CarImage>>(CheckisCarImageNull(carId));
         }
+
+        private List<CarImage> CheckisCarImageNull(int carId)
+        {
+            string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName + @"\Images\defaultImage.jpg");
+            var result = _carImageDal.GetAll(c => c.CarId == carId).Any();
+            if (!result)
+            {
+                return new List<CarImage> { new CarImage { CarId = carId, ImagePath = path, Date = DateTime.Now } };
+            }
+            return _carImageDal.GetAll(p => p.CarId == carId);
+        }
+
 
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(CarImage carImage, string deleteOldImage, string extension)
@@ -94,6 +106,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+
         private IDataResult<CarImage> CreatedCarFeatureAndImagesPath(CarImage carImage, string extension, string deleteOldImage)
         {
 
@@ -111,11 +124,12 @@ namespace Business.Concrete
                 + extension;
 
             string sourcePath = Path.Combine(carImage.ImagePath);
+
             string savedFullPath = $@"{savedPath}\{newUniqueFilename}";
             try
             {
                 File.Move(sourcePath, savedPath + @"\" + newUniqueFilename);
-                if (carImage.Id != null && carImage.Id > 0)
+                if (carImage.Id > 0)
                 {
                     File.Delete(deleteOldImage);
                 }
@@ -131,5 +145,10 @@ namespace Business.Concrete
         }
 
 
+
+        public IDataResult<CarImage> Get(int id)
+        {
+            return new SuccessDataResult<CarImage>(_carImageDal.Get(p => p.Id == id));
+        }
     }
 }

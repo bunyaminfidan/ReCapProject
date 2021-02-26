@@ -26,6 +26,7 @@ namespace WebAPI.Controllers
         [HttpPost("add")]
         public async Task<string> Add([FromForm] IFormFile uploadImages, [FromForm] CarImage carImage)
         {
+
             System.IO.FileInfo fileInfo = new System.IO.FileInfo(uploadImages.FileName);
             string fileExtension = fileInfo.Extension;
 
@@ -72,10 +73,6 @@ namespace WebAPI.Controllers
         [HttpPost("delete")]
         public IActionResult Delete(CarImage carImage)
         {
-
-
-
-
             var result = _carImageService.Delete(carImage);
             if (result.Success)
             {
