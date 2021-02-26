@@ -59,6 +59,18 @@ namespace DataAccess.Constans
         public static string GetByCustomerIdListed = "Seçili müşteri listelendi";
 
 
+        public static string FailedCarImageLimiit = "Araç maximum resim ekleme limitine ulaştı";
+        public static string CarImageAdded = "Araç resim bilgileri yüklendi";
+        public static string CarImageUpdated = "Araç resim bilgileri güncellendi";
+        public static string CarImageDeleted = "Araç resim bilgileri silindi";
+        public static string GetAllCarImage = "Araç resim bilgileri listelendi";
+        public static string GetByIdCarImage = "Seçili araç resim bilgileri listelendi";
+        public static string GetByCarIdCarImage = "Seçili aracın tüm resim resim bilgileri listelendi";
+
+
+
+
+
 
 
     }
