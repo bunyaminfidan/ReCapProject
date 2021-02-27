@@ -34,7 +34,7 @@ namespace Business.Concrete
                 return result;
             }
 
-            carImage.ImagePath = FileHelper.AddAsync(file);
+            carImage.ImagePath = FileHelper.Add(file);
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
             return new SuccessResult(Messages.CarImageAdded);
@@ -42,21 +42,14 @@ namespace Business.Concrete
 
         public IResult Delete(CarImage carImage)
         {
-            string deleteSourcePath = carImage.ImagePath;
-            try
-            {
-                if (carImage.Id > 0)
-                {
-                    File.Delete(deleteSourcePath);
-                    _carImageDal.Delete(carImage);
-                    return new SuccessResult(Messages.CarImageDeleted);
-                }
-            }
-            catch (Exception exception)
-            {
+            IResult result = BusinessRules.Run(FileHelper.Delete(carImage.ImagePath));
 
-                return new ErrorResult(exception.Message);
+            if (result != null)
+            {
+                return result;
             }
+
+            _carImageDal.Delete(carImage);
             return new SuccessResult(Messages.CarImageDeleted);
         }
 
@@ -79,11 +72,11 @@ namespace Business.Concrete
 
         private List<CarImage> CheckisCarImageNull(int carId)
         {
-            string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName + @"\Images\defaultImage.jpg");
+            var defaultImagesPath = FileHelper.DefaultPath();
             var result = _carImageDal.GetAll(c => c.CarId == carId).Any();
             if (!result)
             {
-                return new List<CarImage> { new CarImage { CarId = carId, ImagePath = path, Date = DateTime.Now } };
+                return new List<CarImage> { new CarImage { CarId = carId, ImagePath = defaultImagesPath, Date = DateTime.Now } };
             }
             return _carImageDal.GetAll(p => p.CarId == carId);
         }
@@ -100,7 +93,7 @@ namespace Business.Concrete
                 return result;
             }
 
-            carImage.ImagePath = FileHelper.UpdateAsync(file, carImage.ImagePath);
+            carImage.ImagePath = FileHelper.Update(file, carImage.ImagePath);
             carImage.Date = DateTime.Now;
             _carImageDal.Update(carImage);
             return new SuccessResult(Messages.CarImageUpdated);

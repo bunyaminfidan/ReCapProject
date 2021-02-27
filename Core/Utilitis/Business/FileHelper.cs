@@ -4,16 +4,15 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-
-
+using Core.Utilitis.Results;
 
 namespace Core.Utilitis.Business
 {
     public class FileHelper
     {
-        public static string AddAsync(IFormFile file)
+        public static string Add(IFormFile file)
         {
-            var result = newPathAsync(file);
+            var result = newPath(file);
             try
             {
                 var copyFiletoTempFolder = Path.GetTempFileName();
@@ -30,9 +29,9 @@ namespace Core.Utilitis.Business
             return result;
         }
 
-        public static string UpdateAsync(IFormFile file, string sourcePath)
+        public static string Update(IFormFile file, string sourcePath)
         {
-            var result = newPathAsync(file);
+            var result = newPath(file);
             try
             {
 
@@ -49,7 +48,26 @@ namespace Core.Utilitis.Business
             return result;
         }
 
-        public static string newPathAsync(IFormFile file)
+        public static IResult Delete(string sourcePath)
+        {
+            try
+            {
+                File.Delete(sourcePath);
+            }
+            catch (Exception exception)
+            {
+                return new ErrorResult(exception.Message);
+            }
+            return new SuccessResult();
+
+        }
+        public static string DefaultPath()
+        {
+            string defaultPath = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName + @"\Images\defaultImage.jpg");
+            return defaultPath;
+        }
+
+        public static string newPath(IFormFile file)
         {
 
             System.IO.FileInfo fileInfo = new System.IO.FileInfo(file.FileName);
