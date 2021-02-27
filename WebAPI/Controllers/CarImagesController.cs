@@ -24,50 +24,27 @@ namespace WebAPI.Controllers
 
         //IFormFile dosya işlemleri için. Bu örnekte resim yüklemek için kullanıldı.
         [HttpPost("add")]
-        public async Task<string> Add([FromForm] IFormFile uploadImages, [FromForm] CarImage carImage)
+        public IActionResult Add([FromForm] IFormFile file, [FromForm] CarImage carImage)
         {
-
-            System.IO.FileInfo fileInfo = new System.IO.FileInfo(uploadImages.FileName);
-            string fileExtension = fileInfo.Extension;
-
-            var imagePath = Path.GetTempFileName();
-            if (uploadImages.Length > 0)
-            {
-                using (var fileStream = new FileStream(imagePath, FileMode.Create))
-                    await uploadImages.CopyToAsync(fileStream);
-            }
-            var addedCarImage = new CarImage { CarId = carImage.CarId, ImagePath = imagePath, Date = DateTime.Now };
-            var result = _carImageService.Add(addedCarImage, fileExtension);
+            var result = _carImageService.Add(file, carImage);
 
             if (result.Success)
             {
-                return result.Message;
+                return Ok(result);
             }
-            return result.Message;
+            return BadRequest(result);
         }
 
         [HttpPost("update")]
-        public async Task<string> Update([FromForm] IFormFile uploadImages, [FromForm] CarImage carImage)
+        public IActionResult Update([FromForm] IFormFile file, [FromForm] CarImage carImage)
         {
-            var deleteOldImagePath = carImage.ImagePath;
-
-            System.IO.FileInfo fileInfo = new System.IO.FileInfo(uploadImages.FileName);
-            string fileExtension = fileInfo.Extension;
-
-            var imagePath = Path.GetTempFileName();
-            if (uploadImages.Length > 0)
-            {
-                using (var fileStream = new FileStream(imagePath, FileMode.Create))
-                    await uploadImages.CopyToAsync(fileStream);
-            }
-            var updatedCarImage = new CarImage { Id=carImage.Id, CarId = carImage.CarId, ImagePath = imagePath, Date = DateTime.Now };
-            var result = _carImageService.Update(updatedCarImage, deleteOldImagePath, fileExtension);
+            var result = _carImageService.Update(file, carImage);
 
             if (result.Success)
             {
-                return result.Message;
+                return Ok(result);
             }
-            return result.Message;
+            return BadRequest(result);
         }
 
         [HttpPost("delete")]
