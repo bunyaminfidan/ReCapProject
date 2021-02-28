@@ -5,7 +5,7 @@ using Core.CrossCuttingConcerns.Validation.FluentValidation;
 using Core.Utilitis.Results;
 using DataAccess.Abstract;
 using DataAccess.Constans;
-using Entities.Concrete;
+using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -52,6 +52,16 @@ namespace Business.Concrete
         {
             _userDal.Update(user);
             return new SuccessResult(Messages.UserUpdated);
+        }
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _userDal.GetClaims(user);
+        }
+
+        public User GetByMail(string email)
+        {
+            return _userDal.Get(u => u.Email == email);
         }
     }
 }

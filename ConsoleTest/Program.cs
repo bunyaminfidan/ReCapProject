@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Core.Entities.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
@@ -40,7 +41,7 @@ namespace ConsoleTest
             // GetByIdRentalDetail();
 
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
-          var result=  rentalManager.Add(new Rental { CarId = 1, CustomerId = 2, RentDate = DateTime.Now.Date ,ReturnDate=null});
+            var result = rentalManager.Add(new Rental { CarId = 1, CustomerId = 2, RentDate = DateTime.Now.Date, ReturnDate = null });
             Console.WriteLine(result.Message);
         }
 
@@ -84,7 +85,7 @@ namespace ConsoleTest
         private static void UserAddTested()
         {
             UserManager userManager = new UserManager(new EfUserDal());
-            var result = userManager.Add(new User { FirstName = "Bünyamin", LastName = "FİDAN", Email = "deneme@deneme", Password = "12345" });
+            var result = userManager.Add(new User { FirstName = "Bünyamin", LastName = "FİDAN", Email = "deneme@deneme" });
             Console.WriteLine(result.Message);
         }
 

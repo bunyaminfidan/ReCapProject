@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace DataAccess.Constans
@@ -67,11 +68,13 @@ namespace DataAccess.Constans
         public static string GetByIdCarImage = "Seçili araç resim bilgileri listelendi";
         public static string GetByCarIdCarImage = "Seçili aracın tüm resim resim bilgileri listelendi";
 
-
-
-
-
-
+        public static string AuthorizationDenied = "Yetkiniz yok";
+        public static string UserRegistered = "Kayıt oldu";
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string PasswordError = "Parola hatalı";
+        public static string SuccessfulLogin = "Başarılı giriş";
+        public static string UserAlreadyExists = "Kullanıcı mevcut";
+        public static string AccessTokenCreated = "Token oluşturuldu";
 
     }
 }
