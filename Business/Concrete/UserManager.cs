@@ -9,6 +9,7 @@ using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Business.BusinessAspects.Autofac;
 
 namespace Business.Concrete
 {
@@ -21,7 +22,7 @@ namespace Business.Concrete
         {
             _userDal = userDal;
         }
-
+       // [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {

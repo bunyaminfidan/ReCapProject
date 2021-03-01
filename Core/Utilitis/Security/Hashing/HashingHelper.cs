@@ -7,12 +7,12 @@ namespace Core.Utilitis.Security.Hashing
     public class HashingHelper
     {
         public static void CreatePasswordHash //girilen parolayı hmac cryptography ile passwordHash ve passwordSalta çeviriyoruz.
-            (string passwor, out byte[] passwordHash, out byte[] passwordSalt)
+            (string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
                 passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(passwor));
+                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
 
