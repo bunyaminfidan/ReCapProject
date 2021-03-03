@@ -13,8 +13,7 @@ namespace Business.Abstract
         IResult Add(User user);
         IResult Update(User user);
         IResult Delete(User user);
-        
-        List<OperationClaim> GetClaims(User user); //Jwt
-        User GetByMail(string email);//Jwt
+        IDataResult<List<OperationClaim>> GetClaims(User user); //Jwt
+        IDataResult<User> GetByMail(string email);//Jwt
     }
 }
