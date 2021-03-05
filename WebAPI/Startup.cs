@@ -1,5 +1,7 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.Utilitis.IoC;
 using Core.Utilitis.Security.Encryption;
 using Core.Utilitis.Security.JWT;
@@ -70,9 +72,13 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-           services.AddSingleton<IHttpContextAccessor , HttpContextAccessor>();
 
-            ServiceTool.Create(services); //14 ders sonu hata sonrasý eklendi
+            // ServiceTool.Create(services); //14 ders sonu hata sonrasý eklendi geçiçi
+            //yerine alttaki kod yazýldý.
+            services.AddDependencyResolvers(new ICoreModule[] {
+                new CoreModule()
+            });
+
 
 
 

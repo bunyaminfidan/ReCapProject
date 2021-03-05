@@ -22,7 +22,7 @@ namespace Business.Concrete
         {
             _userDal = userDal;
         }
-       // [SecuredOperation("car.add,admin")]
+        // [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
@@ -55,14 +55,14 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UserUpdated);
         }
 
-        public IDataResult< List<OperationClaim>> GetClaims(User user)
+        public IDataResult<List<OperationClaim>> GetClaims(User user)
         {
-            return new SuccessDataResult<List<OperationClaim>>( _userDal.GetClaims(user));
+            return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user));
         }
 
         public IDataResult<User> GetByMail(string email)
         {
-            return new SuccessDataResult<User> (_userDal.Get(u => u.Email == email));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
         }
     }
 }

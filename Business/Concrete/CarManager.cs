@@ -12,6 +12,7 @@ using Core.Utilitis.Results;
 using Core.CrossCuttingConcerns.Validation.FluentValidation;
 using Core.Aspects.Autofac;
 using Business.BusinessAspects.Autofac;
+using Core.Aspects.Caching.Microsoft;
 
 namespace Business.Concrete
 {
@@ -25,6 +26,7 @@ namespace Business.Concrete
         }
         [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")] //içerisinde bu parametre olan tüm cacheleri siler
         public IResult Add(Car car)
         {
                _carDal.Add(car);
@@ -37,6 +39,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
