@@ -17,8 +17,8 @@ namespace Core.DependencyResolvers
         {
             serviceCollection.AddMemoryCache(); // arkaplanda hazır bir ICacheManager oluşturuyor.
             serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-             serviceCollection.AddSingleton<ICacheService, MemoryCacheManager>();
-            //serviceCollection.AddSingleton<Stopwatch>();
+            serviceCollection.AddSingleton<ICacheService, MemoryCacheManager>(); //caching için
+            serviceCollection.AddSingleton<Stopwatch>(); // performance yönetimi için
 
         }
     }

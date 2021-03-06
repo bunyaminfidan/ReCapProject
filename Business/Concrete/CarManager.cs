@@ -12,7 +12,9 @@ using Core.Utilitis.Results;
 using Core.CrossCuttingConcerns.Validation.FluentValidation;
 using Core.Aspects.Autofac;
 using Business.BusinessAspects.Autofac;
-using Core.Aspects.Caching.Microsoft;
+using Core.Aspects.Autofac.Validation;
+using Core.Aspects.Autofac.Caching.Microsoft;
+using Core.Aspects.Autofac.Performance;
 
 namespace Business.Concrete
 {
@@ -24,6 +26,7 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
+        [PerformanceAspect(1)]
         [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")] //içerisinde bu parametre olan tüm cacheleri siler

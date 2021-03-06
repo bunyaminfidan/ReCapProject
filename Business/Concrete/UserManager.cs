@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Business.BusinessAspects.Autofac;
+using Core.Aspects.Autofac.Validation;
 
 namespace Business.Concrete
 {

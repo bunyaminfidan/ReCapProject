@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Business.ValidationRules.FluentValidation;
-using Core.Aspects.Autofac;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilitis.Results;
 using DataAccess.Abstract;
 using DataAccess.Constans;
