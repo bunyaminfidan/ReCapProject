@@ -11,11 +11,11 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CostumersController : ControllerBase
+    public class CustomersController : ControllerBase
     {
         ICustomerService _customerService;
 
-        public CostumersController(ICustomerService customerService)
+        public CustomersController(ICustomerService customerService)
         {
             _customerService = customerService;
         }
@@ -70,6 +70,18 @@ namespace WebAPI.Controllers
         public IActionResult GetById(int id)
         {
             var result = _customerService.GetByCustomerId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
+        [HttpGet("getalldetail")]
+        public IActionResult GetAllDetail()
+        {
+            var result = _customerService.GetAllCustomerDetail();
             if (result.Success)
             {
                 return Ok(result);

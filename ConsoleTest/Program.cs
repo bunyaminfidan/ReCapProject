@@ -51,7 +51,7 @@ namespace ConsoleTest
             var result = rentalManager.GetByCarIdRentalDetail(1);
             foreach (var rental in result.Data)
             {
-                Console.WriteLine(rental.FirsName + " " + rental.LastName + " " + rental.Email + " " + rental.FirsName + " " + rental.LastName);
+                Console.WriteLine(rental.FirstName + " " + rental.LastName + " " + rental.Email + " " + rental.FirstName + " " + rental.LastName);
 
             }
             Console.WriteLine(result.Message);
@@ -63,7 +63,7 @@ namespace ConsoleTest
             var result = rentalManager.GetAllRentalDetail();
             foreach (var rental in result.Data)
             {
-                Console.WriteLine(rental.FirsName + " " + rental.LastName + " " + rental.Email + " " + rental.FirsName + " " + rental.LastName);
+                Console.WriteLine(rental.FirstName + " " + rental.LastName + " " + rental.Email + " " + rental.FirstName + " " + rental.LastName);
 
             }
             Console.WriteLine(result.Message);

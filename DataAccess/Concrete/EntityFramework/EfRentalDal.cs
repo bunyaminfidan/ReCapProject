@@ -46,7 +46,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  DailyPrice = car.DailyPrice,
                                  Description = car.Description,
                                  Email = user.Email,
-                                 FirsName = user.FirstName,
+                                 FirstName = user.FirstName,
                                  LastName = user.LastName,
                                  ModelYear = car.ModelYear
                              };

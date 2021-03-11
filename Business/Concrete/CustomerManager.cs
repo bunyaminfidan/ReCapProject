@@ -6,6 +6,7 @@ using Core.Utilitis.Results;
 using DataAccess.Abstract;
 using DataAccess.Constans;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,6 +27,11 @@ namespace Business.Concrete
         {
             _costumerDal.Add(costumer);
             return new SuccessResult(Messages.CustomerAdded);
+        }
+
+        public IDataResult<List<CustomerDetail>> GetAllCustomerDetail()
+        {
+            return new SuccessDataResult<List<CustomerDetail>>(_costumerDal.GetCustomerDetails(), Messages.GetCustomerDetail);
         }
 
         public IResult Delete(Customer costumer)
