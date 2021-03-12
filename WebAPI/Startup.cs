@@ -102,6 +102,9 @@ namespace WebAPI
             //Cors iþlemi. Linke güvenebilirsin dedik.
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
+            // Exception middleware
+            app.ConfigureCustomExceptionMiddleware();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

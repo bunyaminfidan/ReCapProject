@@ -15,6 +15,8 @@ using Business.BusinessAspects.Autofac;
 using Core.Aspects.Autofac.Validation;
 using Core.Aspects.Autofac.Caching.Microsoft;
 using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Logging;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 
 namespace Business.Concrete
 {
@@ -26,14 +28,16 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-        [PerformanceAspect(1)]
+       // [PerformanceAspect(1)]
         [SecuredOperation("car.add,admin")]
+        [LogAspect(typeof(FileLogger))]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")] //içerisinde bu parametre olan tüm cacheleri siler
         public IResult Add(Car car)
         {
                _carDal.Add(car);
-               return new SuccessResult(Messages.CarAdded);
+              return new SuccessResult(Messages.CarAdded);
+          //  throw new Exception("hata testi");
         }
 
         public IResult Delete(Car car)
@@ -43,6 +47,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        [LogAspect(typeof(FileLogger))]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
@@ -63,6 +68,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.Id == carId), Messages.CarByIdDetailListed);
         }
 
+        [LogAspect(typeof(FileLogger))]
         public IDataResult<List<Car>> GetByIdCar(int carId)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.Id == carId), Messages.GetCarByIdListed);
