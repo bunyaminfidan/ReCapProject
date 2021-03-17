@@ -28,16 +28,16 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-       // [PerformanceAspect(1)]
+        // [PerformanceAspect(1)]
         [SecuredOperation("car.add,admin")]
         [LogAspect(typeof(FileLogger))]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")] //içerisinde bu parametre olan tüm cacheleri siler
         public IResult Add(Car car)
         {
-               _carDal.Add(car);
-              return new SuccessResult(Messages.CarAdded);
-          //  throw new Exception("hata testi");
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
+            //  throw new Exception("hata testi");
         }
 
         public IResult Delete(Car car)
@@ -55,12 +55,12 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetByBrandIdCarDetails(int brandId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.BrandId == brandId), Messages.CarByBrandIdDetailListed);
         }
 
         public IDataResult<List<CarDetailDto>> GetByColorIdCarDetails(int colorId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == colorId), Messages.CarByColorIdDetailListed);
         }
 
         public IDataResult<List<CarDetailDto>> GetByIdCarDetails(int carId)

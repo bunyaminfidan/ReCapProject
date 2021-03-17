@@ -18,8 +18,11 @@ namespace DataAccess.Constans
         public static string CarByIdDetailListed = "Seçili araba detayları listelendi";
         public static string GetCarByIdListed = "Seçili araba listelendi";
         public static string GetCarDetailsListed = "Araba detayları listelendi";
-        public static string GetCarsByBrandIdListed = "Arabaların fiyatları listelendi";
+        public static string GetCarsByBrandIdListed = "Arabaların markaları listelendi";
         public static string GetCarsByColorIdListed = "Arabaların renkleri listelendi";
+        public static string CarByBrandIdDetailListed = "Seçili marka araba detayları listelendi";
+        public static string CarByColorIdDetailListed = "Seçili renk araba detayları listelendi";
+
 
         public static string BrandAdded = "Araba markası eklendi";
         public static string BrandUpdated = "Araba markası güncellendi";
