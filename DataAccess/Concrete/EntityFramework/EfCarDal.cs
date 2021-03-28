@@ -34,6 +34,11 @@ namespace DataAccess.Concrete.EntityFramework
                                  DailyPrice = car.DailyPrice,
                                  ModelYear = car.ModelYear,
                                  Description = car.Description,
+                                 Status = !context.Rentals.Any(r => r.CarId == car.Id &&
+                                 (r.ReturnDate == null || r.ReturnDate > DateTime.Now)),
+                                 ImagePath = (from carImages in context.CarImages 
+                                              where carImages.CarId == car.Id 
+                                              select carImages.ImagePath).ToList()
                              };
                 return result.ToList();
             }

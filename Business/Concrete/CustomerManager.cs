@@ -34,6 +34,13 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CustomerDetail>>(_costumerDal.GetCustomerDetails(), Messages.GetCustomerDetail);
         }
 
+        public IDataResult<List<CustomerDetail>> GetByIdCustomerDetail(int costumerId)
+        {
+            return new SuccessDataResult<List<CustomerDetail>>
+                (_costumerDal.GetCustomerDetails(c => c.Id== costumerId), Messages.GetCustomerDetail);
+
+        }
+
         public IResult Delete(Customer costumer)
         {
             _costumerDal.Delete(costumer);
@@ -56,5 +63,7 @@ namespace Business.Concrete
             _costumerDal.Update(costumer);
             return new SuccessResult(Messages.CustomerUpdated);
         }
+
+
     }
 }

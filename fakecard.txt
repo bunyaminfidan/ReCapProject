@@ -1,0 +1,20 @@
+USE [RecarDb]
+GO
+
+/****** Object: Table [dbo].[FakeCards] Script Date: 28.03.2021 19:02:28 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[FakeCards] (
+    [Id]             INT           IDENTITY (1, 1) NOT NULL,
+    [NameOnTheCard]  NVARCHAR (50) NULL,
+    [Number]         NVARCHAR (50) NULL,
+    [Cvv]            NVARCHAR (50) NULL,
+    [ExpirationDate] NVARCHAR (50) NULL,
+    [MoneyInTheCard] INT           NULL
+);
+
+
