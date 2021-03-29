@@ -39,9 +39,25 @@ namespace Business.Concrete
             return new SuccessDataResult<List<FakeCard>>(_fakeCardDal.GetAll(), Messages.FakeCardGetAll);
         }
 
+        public IDataResult<List<FakeCard>> GetByCardNumber(string cardNumber)
+        {
+            return new SuccessDataResult<List<FakeCard>>(_fakeCardDal.GetAll(c => c.Number == cardNumber));
+        }
+
         public IDataResult<List<FakeCard>> GetByIdFakeCard(int id)
         {
             return new SuccessDataResult<List<FakeCard>>(_fakeCardDal.GetAll(f => f.Id == id), Messages.FakeCardGetById);
+        }
+
+        public IResult IsCardExist(FakeCard fakeCard)
+        {
+            var result = _fakeCardDal.Get(c => c.nameOnTheCard == fakeCard.nameOnTheCard && c.Number == fakeCard.Number && 
+            c.Cvv == fakeCard.Cvv);
+            if (result == null)
+            {
+                return new ErrorResult();
+            }
+            return new SuccessResult();
         }
 
         public IResult Update(FakeCard fakeCard)

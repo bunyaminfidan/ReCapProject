@@ -5,12 +5,14 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    public class FakeCard: IEntity
+    public class FakeCard : IEntity
     {
         public int Id { get; set; }
         public string nameOnTheCard { get; set; }
         public string Number { get; set; }
+        public string Cvv { get; set; }
         public string ExpirationDate { get; set; }
         public int MoneyInTheCard { get; set; }
+
     }
 }
