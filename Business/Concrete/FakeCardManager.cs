@@ -41,7 +41,7 @@ namespace Business.Concrete
 
         public IDataResult<List<FakeCard>> GetByCardNumber(string cardNumber)
         {
-            return new SuccessDataResult<List<FakeCard>>(_fakeCardDal.GetAll(c => c.Number == cardNumber));
+            return new SuccessDataResult<List<FakeCard>>(_fakeCardDal.GetAll(c => c.Number == cardNumber),Messages.GetByCardNumber);
         }
 
         public IDataResult<List<FakeCard>> GetByIdFakeCard(int id)

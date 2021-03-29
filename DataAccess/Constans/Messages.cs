@@ -89,6 +89,7 @@ namespace DataAccess.Constans
         public static string FakeCardDeleted = "Demo kart silindi";
         public static string FakeCardGetAll = "Demo kartlar listelendi";
         public static string FakeCardGetById = "Seçili demo kart listelendi";
+        public static string GetByCardNumber = "Kart numarasına göre kart getirildi.";
 
     }
 }
