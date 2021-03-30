@@ -29,7 +29,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
         // [PerformanceAspect(1)]
-        [SecuredOperation("car.add,admin")]
+       // [SecuredOperation("car.add,admin")]
         [LogAspect(typeof(FileLogger))]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")] //içerisinde bu parametre olan tüm cacheleri siler

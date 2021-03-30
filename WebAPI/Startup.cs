@@ -97,7 +97,8 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            // Exception middleware
+            app.ConfigureCustomExceptionMiddleware();
 
             //Cors iþlemi. Linke güvenebilirsin dedik.
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
@@ -105,8 +106,7 @@ namespace WebAPI
             //wwwroot klasörüne eriþim için gerekli. Araba resmi çekme iþlemi
             app.UseStaticFiles();
 
-            // Exception middleware
-            app.ConfigureCustomExceptionMiddleware();
+
 
             app.UseHttpsRedirection();
 
