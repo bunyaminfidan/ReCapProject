@@ -1,8 +1,8 @@
-﻿using FluentValidation.Results;
+﻿using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,14 +43,14 @@ namespace Core.Extensions
                 if (e.GetType() == typeof(ValidationException))
                 {
                     message = e.Message;
-                   // errors = ((ValidationException)e).Errors;
+                    errors = ((ValidationException)e).Errors;
                     httpContext.Response.StatusCode = 400;
 
                     return httpContext.Response.WriteAsync(new ValidationErrorDetails
                     {
                         StatusCode = 400,
                         Message = message,
-                      //  Errors = errors
+                        ValidationErrors = errors
                     }.ToString());
 
                 }
