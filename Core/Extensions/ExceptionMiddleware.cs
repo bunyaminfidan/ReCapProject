@@ -9,58 +9,56 @@ using System.Threading.Tasks;
 
 namespace Core.Extensions
 {
-
-    namespace Core.Extensions
+    public class ExceptionMiddleware
     {
-        public class ExceptionMiddleware
+        private RequestDelegate _next;
+
+        public ExceptionMiddleware(RequestDelegate next)
         {
-            private RequestDelegate _next;
+            _next = next;
+        }
 
-            public ExceptionMiddleware(RequestDelegate next)
+        public async Task InvokeAsync(HttpContext httpContext)
+        {
+            try
             {
-                _next = next;
+                await _next(httpContext);
             }
-
-            public async Task InvokeAsync(HttpContext httpContext)
+            catch (Exception e)
             {
-                try
-                {
-                    await _next(httpContext);
-                }
-                catch (Exception e)
-                {
-                    await HandleExceptionAsync(httpContext, e);
-                }
+                await HandleExceptionAsync(httpContext, e);
             }
+        }
 
-            private Task HandleExceptionAsync(HttpContext httpContext, Exception e)
+        private Task HandleExceptionAsync(HttpContext httpContext, Exception e)
+        {
+            httpContext.Response.ContentType = "application/json";
+            httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+            string message = "Internal Server Error";
+            IEnumerable<ValidationFailure> errors;
+            if (e.GetType() == typeof(ValidationException))
             {
-                httpContext.Response.ContentType = "application/json";
-                httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                message = e.Message;
+                errors = ((ValidationException)e).Errors; //hatayı list olarak dönüyoruz.
+                httpContext.Response.StatusCode = 400;
 
-                string message = "Internal Server Error";
-                IEnumerable<ValidationFailure> errors;
-                if (e.GetType() == typeof(ValidationException))
+                return httpContext.Response.WriteAsync(new ValidationErrorDetails
                 {
-                    message = e.Message;
-                    errors = ((ValidationException)e).Errors;
-                    httpContext.Response.StatusCode = 400;
+                    StatusCode = 400,    // httpContext.Response.StatusCode = 400; //Bad request. hata validation hatası olduğu için  sistem hatası değil
+                    Message = message, // iptal edilmesinde fayda var. Sistem ile ilgili bilgi veriyor.
+                    ValidationErrors = errors //hatayı json olarak gönderiyoruz.
 
-                    return httpContext.Response.WriteAsync(new ValidationErrorDetails
-                    {
-                        StatusCode = 400,
-                        Message = message,
-                        ValidationErrors = errors
-                    }.ToString());
-
-                }
-
-                return httpContext.Response.WriteAsync(new ErrorDetails
-                {
-                    StatusCode = httpContext.Response.StatusCode,
-                    Message = message
                 }.ToString());
+
             }
+
+            return httpContext.Response.WriteAsync(new ErrorDetails
+            {
+                StatusCode = httpContext.Response.StatusCode,
+                Message = message
+            }.ToString());
         }
     }
 }
+

@@ -100,7 +100,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId), Messages.GetCarsByColorIdListed);
 
         }
-
+        [LogAspect(typeof(FileLogger))]
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
             if (car.DailyPrice > 0)

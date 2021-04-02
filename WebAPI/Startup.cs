@@ -106,8 +106,6 @@ namespace WebAPI
             //wwwroot klasörüne eriþim için gerekli. Araba resmi çekme iþlemi
             app.UseStaticFiles();
 
-
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
