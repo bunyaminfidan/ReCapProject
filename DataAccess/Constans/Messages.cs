@@ -56,6 +56,8 @@ namespace DataAccess.Constans
         public static string CarNotReceived = "Araç teslim alınmadığı için şuan kiralanamaz";
         public static string GetByRentDateRentalDetail = "Araç müşteriye teslim edilme tarihine göre listelendi";
         public static string GetByReturnDateRentalDetail = "Araç müşteriden teslim alınma tarihine göre listelendi";
+        public static string RentalFindeksInsufficient = "Araçı kiralabilmek için yeterli Findeks puanınız bulunmuyor";
+
 
 
 
