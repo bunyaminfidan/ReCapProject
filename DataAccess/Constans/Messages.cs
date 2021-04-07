@@ -64,6 +64,7 @@ namespace DataAccess.Constans
         public static string CustomerDeleted = "Müşteri silinidi";
         public static string GetAllCustomerListed = "Müşteriler listelendi";
         public static string GetByCustomerIdListed = "Seçili müşteri listelendi";
+        public static string GetCustomerByUserIdListed = "Seçili müşteri listelendi";
         public static string GetCustomerDetail = "Müşteri detayları getirildi";
 
 
