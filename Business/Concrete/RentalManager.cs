@@ -111,13 +111,12 @@ namespace Business.Concrete
             var car = _carDal.Get(c => c.Id == rental.CarId);
             var user = _userDal.Get(u => u.Id == customer.UserId);
 
-            var userFindeksPoint = user.FindeksPoint;
-            var carFindeksPoint = car.FindeksPoint;
-
+            var userFindeksPoint = user.FindeksScore;
+            var carFindeksPoint = car.FindeksScore;
 
             if (userFindeksPoint < carFindeksPoint)
             {
-                return new ErrorResult(Messages.RentalFindeksInsufficient);
+                return new ErrorResult(Messages.UserFindekScoreInValid);
 
             }
             return new SuccessResult();

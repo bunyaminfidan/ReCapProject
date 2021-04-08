@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Text;
 using Business.BusinessAspects.Autofac;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilitis.Business;
 
 namespace Business.Concrete
 {
@@ -53,9 +54,26 @@ namespace Business.Concrete
 
         public IResult Update(User user)
         {
+
+
+
             _userDal.Update(user);
             return new SuccessResult(Messages.UserUpdated);
         }
+
+
+        //public IResult UpdateInfo(User user)
+        //{
+        //    var userToUpdate = GetById(user.Id).Data;
+        //    userToUpdate.FirstName = user.FirstName;
+        //    userToUpdate.LastName = user.LastName;
+        //    userToUpdate.Email = user.Email;
+        //    userToUpdate.FindeksScore = user.FindeksScore;
+        //    Update(userToUpdate);
+        //    return new SuccessResult(Messages.UserUpdated);
+        //}
+
+
 
         public IDataResult<List<OperationClaim>> GetClaims(User user)
         {
@@ -66,5 +84,8 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
         }
+
+
+
     }
 }

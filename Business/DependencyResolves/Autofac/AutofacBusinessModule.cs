@@ -7,6 +7,7 @@ using Core.Utilitis.Interceptors;
 using Core.Utilitis.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -41,6 +42,9 @@ namespace Business.DependencyResolves.Autofac
 
             builder.RegisterType<FakeCardManager>().As<IFakeCardService>().SingleInstance();
             builder.RegisterType<EfFakeCardDal>().As<IFakeCardDal>().SingleInstance();
+
+            builder.RegisterType<RegisteredCreditCardManager>().As<IRegisteredCreditCardService>().SingleInstance();
+            builder.RegisterType<EfRegisteredCreditCardDal>().As<IRegisteredCreditCardDal>().SingleInstance();
 
 
             builder.RegisterType<AuthManager>().As<IAuthService>();

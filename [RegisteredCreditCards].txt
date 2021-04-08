@@ -1,0 +1,26 @@
+USE [RecarDb]
+GO
+
+/****** Object:  Table [dbo].[RegisteredCreditCards]    Script Date: 8.04.2021 16:54:03 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[RegisteredCreditCards](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[NameOnTheCard] [nvarchar](50) NOT NULL,
+	[Number] [nvarchar](50) NOT NULL,
+	[Cvv] [nvarchar](50) NOT NULL,
+	[ExpirationDate] [nvarchar](50) NOT NULL,
+	[isActive] [bit] NOT NULL,
+ CONSTRAINT [PK_RegisteredCreditCards] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+

@@ -23,8 +23,12 @@ namespace DataAccess.Constans
         public static string CarByBrandIdDetailListed = "Seçili marka araba detayları listelendi";
         public static string CarByColorIdDetailListed = "Seçili renk araba detayları listelendi";
         public static string GetByFilterCar = "Arabalar filtrelendi.";
+        public static string CarFindekScoreInValid = "Arabanın findeks skoru 0-1900 arasında olmalıdır.";
+    
 
-        
+
+
+
 
 
         public static string BrandAdded = "Araba markası eklendi";
@@ -44,6 +48,7 @@ namespace DataAccess.Constans
         public static string UserDeleted = "Kullanıcı silinidi";
         public static string GetAllUserListed = "Kullanıcılar listelendi";
         public static string GetByUserIdListed = "Seçili kullanıcı listelendi";
+        public static string UserFindekScoreInValid = "Kullanıcının Findeks Scoru 0-1900 arasında olmalıdır.";
 
         public static string RentalAdded = "Yeni araba kiralama eklendi";
         public static string RentalUpdated = "Araba kiralama güncellendi";
@@ -56,7 +61,7 @@ namespace DataAccess.Constans
         public static string CarNotReceived = "Araç teslim alınmadığı için şuan kiralanamaz";
         public static string GetByRentDateRentalDetail = "Araç müşteriye teslim edilme tarihine göre listelendi";
         public static string GetByReturnDateRentalDetail = "Araç müşteriden teslim alınma tarihine göre listelendi";
-        public static string RentalFindeksInsufficient = "Araçı kiralabilmek için yeterli Findeks puanınız bulunmuyor";
+        public static string RentalFindeksInValid = "Araçı kiralabilmek için yeterli Findeks puanınız bulunmuyor";
 
 
 
@@ -94,5 +99,14 @@ namespace DataAccess.Constans
         public static string FakeCardGetById = "Seçili demo kart listelendi";
         public static string GetByCardNumber = "Kart numarasına göre kart getirildi.";
 
+
+
+
+        public static string RegisteredCreditCardAdded = "Kredi kartı eklendi";
+        public static string RegisteredCreditCardUpdated = "Kredi kartı güncellendi";
+        public static string RegisteredCreditCardDeleted = "Kredi kartı silindi";
+        public static string GetAllRegisteredCreditCard = "Kredi kartları listelendi";
+        public static string GetByRegisteredCreditCard = "Seçili kredi kartı listelendi";
+        public static string GetByUserIdRegisteredCreditCard = "Seçili kullanıcının kredi kartları listelendi";
     }
 }

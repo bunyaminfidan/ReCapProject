@@ -17,6 +17,7 @@ using Core.Aspects.Autofac.Caching.Microsoft;
 using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Logging;
 using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
+using Core.Utilitis.Business;
 
 namespace Business.Concrete
 {
@@ -30,12 +31,17 @@ namespace Business.Concrete
         }
 
         [PerformanceAspect(1)]
-       [SecuredOperation("car.add,admin")]
+        [SecuredOperation("car.add,admin")]
         [LogAspect(typeof(FileLogger))]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")] //içerisinde bu parametre olan tüm cacheleri siler
         public IResult Add(Car car)
         {
+            IResult result = BusinessRules.Run(IncorrectCarDailyPrice(car));
+            if (result != null)
+            {
+                return result;
+            }
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
             //  throw new Exception("hata testi");
@@ -105,13 +111,27 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
-            if (car.DailyPrice > 0)
+            IResult result = BusinessRules.Run(IncorrectCarDailyPrice(car));
+            if (result != null)
             {
-                _carDal.Update(car);
-                return new SuccessResult(Messages.CarUpdated);
+                return result;
+            }
+            _carDal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
+
+        }
+
+
+
+        private IResult IncorrectCarDailyPrice(Car car)
+        {
+
+            if (car.DailyPrice <= 0)
+            {
+                return new ErrorResult(Messages.CarPriceInValid);
             }
 
-            return new ErrorResult(Messages.CarPriceInValid);
+            return new SuccessResult();
         }
 
 

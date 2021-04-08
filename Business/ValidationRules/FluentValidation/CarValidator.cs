@@ -19,6 +19,9 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(c => c.DailyPrice).GreaterThan(10);
             RuleFor(c => c.ColorId).NotEmpty();
             RuleFor(c => c.ColorId).GreaterThan(0);
+            RuleFor(c => c.FindeksScore).GreaterThanOrEqualTo(0);
+            RuleFor(c => c.FindeksScore).LessThanOrEqualTo(1900);
+
 
             //  RuleFor(c => c.Description).Must(StartWithA).WithMessage("Açıklama A harfi ile başlamalıdır.");
         }

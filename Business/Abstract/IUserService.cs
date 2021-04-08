@@ -15,5 +15,6 @@ namespace Business.Abstract
         IResult Delete(User user);
         IDataResult<List<OperationClaim>> GetClaims(User user); //Jwt
         IDataResult<User> GetByMail(string email);//Jwt
+        //IResult UpdateInfo(User user);
     }
 }

@@ -34,6 +34,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  DailyPrice = car.DailyPrice,
                                  ModelYear = car.ModelYear,
                                  Description = car.Description,
+                                 FindeksScore = car.FindeksScore,
                                  Status = !context.Rentals.Any(r => r.CarId == car.Id &&
                                  (r.ReturnDate == null || r.ReturnDate > DateTime.Now)),
                                  ImagePath = (from carImages in context.CarImages 
