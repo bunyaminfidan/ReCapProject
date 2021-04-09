@@ -93,7 +93,7 @@ namespace DataAccess.Constans
 
 
         public static string FakeCardAdded = "Demo kart eklendi";
-        public static string FakeCardUpdated = "DEmo kart günncellendi";
+        public static string FakeCardUpdated = "Demo kart bilgileri günncellendi";
         public static string FakeCardDeleted = "Demo kart silindi";
         public static string FakeCardGetAll = "Demo kartlar listelendi";
         public static string FakeCardGetById = "Seçili demo kart listelendi";

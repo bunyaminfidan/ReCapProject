@@ -15,5 +15,9 @@ namespace Business.Abstract
         IResult Update(RegisteredCreditCard registeredCreditCard);
 
         IDataResult<List<RegisteredCreditCard>> GetByUserId(int id);
+
+        IResult isRegisteredCreditCard(RegisteredCreditCard registeredCreditCard);
+
+
     }
 }

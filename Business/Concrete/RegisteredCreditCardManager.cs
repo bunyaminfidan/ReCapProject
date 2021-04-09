@@ -53,6 +53,21 @@ namespace Business.Concrete
 
         }
 
+        public IResult isRegisteredCreditCard(RegisteredCreditCard registeredCreditCard)
+        {
+            var result = _registeredCreditCardDal.Get(
+                r => r.NameOnTheCard == registeredCreditCard.NameOnTheCard &&
+                r.Number == registeredCreditCard.Number &&
+                r.Cvv == registeredCreditCard.Cvv &&
+                r.UserId == registeredCreditCard.UserId &&
+                r.IsActive == true);
+            if (result == null)
+            {
+                return new ErrorResult();
+            }
+            return new SuccessResult();
+        }
+
         [ValidationAspect(typeof(RegisteredCreditCardValidator))]
         public IResult Update(RegisteredCreditCard registeredCreditCard)
         {

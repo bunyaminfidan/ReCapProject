@@ -88,5 +88,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpPost("getisregisteredcreditcard")]
+        public IActionResult isRegisteredCreditCard(RegisteredCreditCard registeredCreditCard)
+        {
+            var result = _registeredCreditCardService.isRegisteredCreditCard(registeredCreditCard);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }
